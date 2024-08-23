@@ -1,6 +1,7 @@
 ﻿using DAL.Context;
 using DAL.Repositories.Abstractions;
 using DAL.Repositories.Concretes;
+using DAL.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
