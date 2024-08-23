@@ -1,10 +1,12 @@
 using DAL.Context;
 using DAL.Extensions;
+using SERVICE.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.LoadDataLayerExtension(builder.Configuration);
+builder.Services.LoadServiceLayerExtension();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -26,8 +28,14 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+    name: "Admin",
+    areaName: "Admin",
+    pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
+    );
+    endpoints.MapDefaultControllerRoute();
+});
 
 app.Run();
