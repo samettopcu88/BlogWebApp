@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ENTITY.Models.Articles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,17 @@ namespace SERVICE.Services.Abstractions
 {
     public interface IArticleService
     {
-        Task<List<ArticleDto>> GetAllArticlesWithCategoryNonDeletedAsync();
-        Task<List<ArticleDto>> GetAllArticlesWithCategoryDeletedAsync();
-        Task<ArticleDto> GetArticleWithCategoryNonDeletedAsync(Guid articleId);
-        Task CreateArticleAsync(ArticleAddDto articleAddDto);
-        Task<string> UpdateArticleAsync(ArticleUpdateDto articleUpdateDto);
+        Task<List<ArticleModel>> GetAllArticlesWithCategoryNonDeletedAsync();
+        Task<List<ArticleModel>> GetAllArticlesWithCategoryDeletedAsync();
+        Task<ArticleModel> GetArticleWithCategoryNonDeletedAsync(Guid articleId);
+        Task CreateArticleAsync(ArticleAddModel ArticleAddModel);
+        Task<string> UpdateArticleAsync(ArticleUpdateModel ArticleUpdateModel);
         Task<string> SafeDeleteArticleAsync(Guid articleId);
         Task<string> UndoDeleteArticleAsync(Guid articleId);
-        Task<ArticleListDto> GetAllByPagingAsync(Guid? categoryId, int currentPage = 1, int pageSize = 3,
+        Task<ArticleListModel> GetAllByPagingAsync(Guid? categoryId, int currentPage = 1, int pageSize = 3,
             bool isAscending = false);
 
-        Task<ArticleListDto> SearchAsync(string keyword, int currentPage = 1, int pageSize = 3,
+        Task<ArticleListModel> SearchAsync(string keyword, int currentPage = 1, int pageSize = 3,
             bool isAscending = false);
     }
 }

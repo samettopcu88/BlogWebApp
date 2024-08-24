@@ -2,7 +2,7 @@ import * as bootstrap from 'bootstrap'
 
 // Extend Tooltip to add color options
 bootstrap.Tooltip.prototype.show = (original => {
-  return function addTooltipColor() {
+  return function adModeloltipColor() {
     if (this._config.toggle === 'tooltip') {
       if (this._element.getAttribute('data-color')) {
         const str = `tooltip-${this._element.getAttribute('data-color')}`

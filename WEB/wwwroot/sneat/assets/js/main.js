@@ -98,7 +98,7 @@ let menu, animate;
   window.Helpers.setAutoUpdate(true);
 
   // Toggle Password Visibility
-  window.Helpers.initPasswordToggle();
+  window.Helpers.initPassworModelggle();
 
   // Speech To Text
   window.Helpers.initSpeechToText();

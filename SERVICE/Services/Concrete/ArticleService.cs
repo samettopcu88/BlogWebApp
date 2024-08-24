@@ -1,8 +1,11 @@
-﻿using ENTITY.Entities;
+﻿using AutoMapper;
+using ENTITY.Entities;
+using ENTITY.Models.Articles;
 using SERVICE.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +27,7 @@ namespace SERVICE.Services.Concrete
             _user = httpContextAccessor.HttpContext.User;
             this.imageHelper = imageHelper;
         }
-        public async Task<ArticleListDto> GetAllByPagingAsync(Guid? categoryId, int currentPage = 1, int pageSize = 3, bool isAscending = false)
+        public async Task<ArticleListModel> GetAllByPagingAsync(Guid? categoryId, int currentPage = 1, int pageSize = 3, bool isAscending = false)
         {
             pageSize = pageSize > 20 ? 20 : pageSize;
             var articles = categoryId == null
@@ -34,7 +37,7 @@ namespace SERVICE.Services.Concrete
             var sortedArticles = isAscending
                 ? articles.OrderBy(a => a.CreatedDate).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList()
                 : articles.OrderByDescending(a => a.CreatedDate).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-            return new ArticleListDto
+            return new ArticleListModel
             {
                 Articles = sortedArticles,
                 CategoryId = categoryId == null ? null : categoryId.Value,
@@ -44,60 +47,60 @@ namespace SERVICE.Services.Concrete
                 IsAscending = isAscending
             };
         }
-        public async Task CreateArticleAsync(ArticleAddDto articleAddDto)
+        public async Task CreateArticleAsync(ArticleAddModel ArticleAddModel)
         {
 
             var userId = _user.GetLoggedInUserId();
             var userEmail = _user.GetLoggedInEmail();
 
-            var imageUpload = await imageHelper.Upload(articleAddDto.Title, articleAddDto.Photo, ImageType.Post);
-            Image image = new(imageUpload.FullName, articleAddDto.Photo.ContentType, userEmail);
+            var imageUpload = await imageHelper.Upload(ArticleAddModel.Title, ArticleAddModel.Photo, ImageType.Post);
+            Image image = new(imageUpload.FullName, ArticleAddModel.Photo.ContentType, userEmail);
             await unitOfWork.GetRepository<Image>().AddAsync(image);
 
-            var article = new Article(articleAddDto.Title, articleAddDto.Content, userId, userEmail, articleAddDto.CategoryId, image.Id);
+            var article = new Article(ArticleAddModel.Title, ArticleAddModel.Content, userId, userEmail, ArticleAddModel.CategoryId, image.Id);
 
 
             await unitOfWork.GetRepository<Article>().AddAsync(article);
             await unitOfWork.SaveAsync();
         }
 
-        public async Task<List<ArticleDto>> GetAllArticlesWithCategoryNonDeletedAsync()
+        public async Task<List<ArticleModel>> GetAllArticlesWithCategoryNonDeletedAsync()
         {
 
             var articles = await unitOfWork.GetRepository<Article>().GetAllAsync(x => !x.IsDeleted, x => x.Category);
-            var map = mapper.Map<List<ArticleDto>>(articles);
+            var map = mapper.Map<List<ArticleModel>>(articles);
 
             return map;
         }
-        public async Task<ArticleDto> GetArticleWithCategoryNonDeletedAsync(Guid articleId)
+        public async Task<ArticleModel> GetArticleWithCategoryNonDeletedAsync(Guid articleId)
         {
 
             var article = await unitOfWork.GetRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id == articleId, x => x.Category, i => i.Image, u => u.User);
-            var map = mapper.Map<ArticleDto>(article);
+            var map = mapper.Map<ArticleModel>(article);
 
             return map;
         }
-        public async Task<string> UpdateArticleAsync(ArticleUpdateDto articleUpdateDto)
+        public async Task<string> UpdateArticleAsync(ArticleUpdateModel ArticleUpdateModel)
         {
             var userEmail = _user.GetLoggedInEmail();
-            var article = await unitOfWork.GetRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id == articleUpdateDto.Id, x => x.Category, i => i.Image);
+            var article = await unitOfWork.GetRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id == ArticleUpdateModel.Id, x => x.Category, i => i.Image);
 
-            if (articleUpdateDto.Photo != null)
+            if (ArticleUpdateModel.Photo != null)
             {
                 imageHelper.Delete(article.Image.FileName);
 
-                var imageUpload = await imageHelper.Upload(articleUpdateDto.Title, articleUpdateDto.Photo, ImageType.Post);
-                Image image = new(imageUpload.FullName, articleUpdateDto.Photo.ContentType, userEmail);
+                var imageUpload = await imageHelper.Upload(ArticleUpdateModel.Title, ArticleUpdateModel.Photo, ImageType.Post);
+                Image image = new(imageUpload.FullName, ArticleUpdateModel.Photo.ContentType, userEmail);
                 await unitOfWork.GetRepository<Image>().AddAsync(image);
 
                 article.ImageId = image.Id;
 
             }
 
-            mapper.Map(articleUpdateDto, article);
-            //article.Title = articleUpdateDto.Title;
-            //article.Content = articleUpdateDto.Content;
-            //article.CategoryId = articleUpdateDto.CategoryId;
+            mapper.Map(ArticleUpdateModel, article);
+            //article.Title = ArticleUpdateModel.Title;
+            //article.Content = ArticleUpdateModel.Content;
+            //article.CategoryId = ArticleUpdateModel.CategoryId;
             article.ModifiedDate = DateTime.Now;
             article.ModifiedBy = userEmail;
 
@@ -122,10 +125,10 @@ namespace SERVICE.Services.Concrete
             return article.Title;
         }
 
-        public async Task<List<ArticleDto>> GetAllArticlesWithCategoryDeletedAsync()
+        public async Task<List<ArticleModel>> GetAllArticlesWithCategoryDeletedAsync()
         {
             var articles = await unitOfWork.GetRepository<Article>().GetAllAsync(x => x.IsDeleted, x => x.Category);
-            var map = mapper.Map<List<ArticleDto>>(articles);
+            var map = mapper.Map<List<ArticleModel>>(articles);
 
             return map;
         }
@@ -144,7 +147,7 @@ namespace SERVICE.Services.Concrete
             return article.Title;
         }
 
-        public async Task<ArticleListDto> SearchAsync(string keyword, int currentPage = 1, int pageSize = 3, bool isAscending = false)
+        public async Task<ArticleListModel> SearchAsync(string keyword, int currentPage = 1, int pageSize = 3, bool isAscending = false)
         {
             pageSize = pageSize > 20 ? 20 : pageSize;
             var articles = await unitOfWork.GetRepository<Article>().GetAllAsync(
@@ -154,7 +157,7 @@ namespace SERVICE.Services.Concrete
             var sortedArticles = isAscending
                 ? articles.OrderBy(a => a.CreatedDate).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList()
                 : articles.OrderByDescending(a => a.CreatedDate).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-            return new ArticleListDto
+            return new ArticleListModel
             {
                 Articles = sortedArticles,
                 CurrentPage = currentPage,
