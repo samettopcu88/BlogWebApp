@@ -1,4 +1,7 @@
-﻿namespace ENTITY.Models.Articles
+﻿using ENTITY.Entities;
+using ENTITY.Models.Categories;
+
+namespace ENTITY.Models.Articles
 {
     public class ArticleUpdateModel
     {
