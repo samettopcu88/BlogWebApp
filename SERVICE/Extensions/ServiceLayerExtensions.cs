@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SERVICE.Services.Abstractions;
 using SERVICE.Services.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
