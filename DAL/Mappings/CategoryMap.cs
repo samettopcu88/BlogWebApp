@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace YoutubeBlog.Data.Mappings
+namespace DAL.Mappings
 {
     public class CategoryMap : IEntityTypeConfiguration<Category>
     {
