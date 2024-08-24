@@ -8,9 +8,9 @@ namespace SERVICE.Services.Abstractions
         Task<List<CategoryModel>> GetAllCategoriesNonDeleted();
         Task<List<CategoryModel>> GetAllCategoriesNonDeletedTake24();
         Task<List<CategoryModel>> GetAllCategoriesDeleted();
-        Task CreateCategoryAsync(CategoryAddModel categoryAddDto);
+        Task CreateCategoryAsync(CategoryAddModel categoryAddModel);
         Task<Category> GetCategoryByGuid(Guid id);
-        Task<string> UpdateCategoryAsync(CategoryUpdateModel categoryUpdateDto);
+        Task<string> UpdateCategoryAsync(CategoryUpdateModel categoryUpdateModel);
         Task<string> SafeDeleteCategoryAsync(Guid categoryId);
         Task<string> UndoDeleteCategoryAsync(Guid categoryId);
     }

@@ -1,9 +1,14 @@
 ﻿using AutoMapper;
 using ENTITY.Entities;
 using ENTITY.Models.Articles;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
+using SERVICE.Extensions;
 using SERVICE.Services.Abstractions;
+using WEB.Const;
+using WEB.ResultMessages;
 
 namespace WEB.Areas.Admin.Controllers
 {
@@ -16,7 +21,7 @@ namespace WEB.Areas.Admin.Controllers
         private readonly IValidator<Article> validator;
         private readonly IToastNotification toast;
 
-        public ArticleController(IArticleService articleService,ICategoryService categoryService,IMapper mapper,IValidator<Article> validator,IToastNotification toast)
+        public ArticleController(IArticleService articleService, ICategoryService categoryService, IMapper mapper, IValidator<Article> validator, IToastNotification toast)
         {
             this.articleService = articleService;
             this.categoryService = categoryService;
@@ -43,7 +48,7 @@ namespace WEB.Areas.Admin.Controllers
         public async Task<IActionResult> Add()
         {
             var categories = await categoryService.GetAllCategoriesNonDeleted();
-            return View(new ArticleAddModel { Categories = categories});
+            return View(new ArticleAddModel { Categories = categories });
         }
         [HttpPost]
         [Authorize(Roles = $"{RoleConsts.Superadmin}, {RoleConsts.Admin}")]
@@ -55,12 +60,12 @@ namespace WEB.Areas.Admin.Controllers
             if (result.IsValid)
             {
                 await articleService.CreateArticleAsync(articleAddModel);
-                toast.AddSuccessToastMessage(Messages.Article.Add(articleAddModel.Title),new ToastrOptions { Title = "İşlem Başarılı" });
+                toast.AddSuccessToastMessage(Messages.Article.Add(articleAddModel.Title), new ToastrOptions { Title = "İşlem Başarılı" });
                 return RedirectToAction("Index", "Article", new { Area = "Admin" });
             }
             else
             {
-                result.AdModelModelState(this.ModelState);
+                result.AddToModelState(this.ModelState);
             }
 
             var categories = await categoryService.GetAllCategoriesNonDeleted();
@@ -97,7 +102,7 @@ namespace WEB.Areas.Admin.Controllers
             }
             else
             {
-                result.AdModelModelState(this.ModelState);
+                result.AddToModelState(this.ModelState);
             }
 
 
