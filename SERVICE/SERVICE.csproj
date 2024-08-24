@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Entity\ENTITY.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AutoMapper\Categories\" />
-  </ItemGroup>
-
 </Project>
