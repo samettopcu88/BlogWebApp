@@ -1,13 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using SERVICE.FluentValidations;
 using SERVICE.Services.Abstractions;
 using SERVICE.Services.Concrete;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SERVICE.Extensions
 {
