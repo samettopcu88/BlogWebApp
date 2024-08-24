@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ENTITY.Entities;
+using ENTITY.Models.Articles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SERVICE.Services.Abstractions;
@@ -42,28 +43,28 @@ namespace WEB.Areas.Admin.Controllers
         public async Task<IActionResult> Add()
         {
             var categories = await categoryService.GetAllCategoriesNonDeleted();
-            return View(new ArticleAddDto { Categories = categories});
+            return View(new ArticleAddModel { Categories = categories});
         }
         [HttpPost]
         [Authorize(Roles = $"{RoleConsts.Superadmin}, {RoleConsts.Admin}")]
-        public async Task<IActionResult> Add(ArticleAddDto articleAddDto)
+        public async Task<IActionResult> Add(ArticleAddModel articleAddModel)
         {
-            var map = mapper.Map<Article>(articleAddDto);
+            var map = mapper.Map<Article>(articleAddModel);
             var result = await validator.ValidateAsync(map);
 
             if (result.IsValid)
             {
-                await articleService.CreateArticleAsync(articleAddDto);
-                toast.AddSuccessToastMessage(Messages.Article.Add(articleAddDto.Title),new ToastrOptions { Title = "İşlem Başarılı" });
+                await articleService.CreateArticleAsync(articleAddModel);
+                toast.AddSuccessToastMessage(Messages.Article.Add(articleAddModel.Title),new ToastrOptions { Title = "İşlem Başarılı" });
                 return RedirectToAction("Index", "Article", new { Area = "Admin" });
             }
             else
             {
-                result.AddToModelState(this.ModelState);
+                result.AdModelModelState(this.ModelState);
             }
 
             var categories = await categoryService.GetAllCategoriesNonDeleted();
-            return View(new ArticleAddDto { Categories = categories });
+            return View(new ArticleAddModel { Categories = categories });
 
 
         }
@@ -74,35 +75,35 @@ namespace WEB.Areas.Admin.Controllers
             var article = await articleService.GetArticleWithCategoryNonDeletedAsync(articleId);
             var categories = await categoryService.GetAllCategoriesNonDeleted();
 
-            var articleUpdateDto = mapper.Map<ArticleUpdateDto>(article);
-            articleUpdateDto.Categories = categories;
+            var articleUpdateModel = mapper.Map<ArticleUpdateModel>(article);
+            articleUpdateModel.Categories = categories;
 
-            return View(articleUpdateDto);
+            return View(articleUpdateModel);
         }
         [HttpPost]
         [Authorize(Roles = $"{RoleConsts.Superadmin}, {RoleConsts.Admin}")]
-        public async Task<IActionResult> Update(ArticleUpdateDto articleUpdateDto)
+        public async Task<IActionResult> Update(ArticleUpdateModel articleUpdateModel)
         {
 
-            var map = mapper.Map<Article>(articleUpdateDto);
+            var map = mapper.Map<Article>(articleUpdateModel);
             var result = await validator.ValidateAsync(map);
 
             if (result.IsValid)
             {
-                var title = await articleService.UpdateArticleAsync(articleUpdateDto);
+                var title = await articleService.UpdateArticleAsync(articleUpdateModel);
                 toast.AddSuccessToastMessage(Messages.Article.Update(title), new ToastrOptions() { Title = "İşlem Başarılı" });
                 return RedirectToAction("Index", "Article", new { Area = "Admin" });
 
             }
             else
             {
-                result.AddToModelState(this.ModelState);
+                result.AdModelModelState(this.ModelState);
             }
 
 
             var categories = await categoryService.GetAllCategoriesNonDeleted();
-            articleUpdateDto.Categories = categories;
-            return View(articleUpdateDto);
+            articleUpdateModel.Categories = categories;
+            return View(articleUpdateModel);
         }
         [Authorize(Roles = $"{RoleConsts.Superadmin}, {RoleConsts.Admin}")]
         public async Task<IActionResult> Delete(Guid articleId)
