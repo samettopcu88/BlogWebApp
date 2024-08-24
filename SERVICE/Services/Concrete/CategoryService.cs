@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DAL.UnitOfWorks;
 using ENTITY.Entities;
-using ENTITY.Models.Cetegories;
+using ENTITY.Models.Categories;
 using SERVICE.Services.Abstractions;
 using System.Security.Claims;
 

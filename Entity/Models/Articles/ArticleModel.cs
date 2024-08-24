@@ -1,5 +1,5 @@
 ﻿using ENTITY.Entities;
-using ENTITY.Models.Cetegories;
+using ENTITY.Models.Categories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

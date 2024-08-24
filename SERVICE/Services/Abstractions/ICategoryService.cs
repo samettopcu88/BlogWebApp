@@ -1,5 +1,5 @@
 ﻿using ENTITY.Entities;
-using ENTITY.Models.Cetegories;
+using ENTITY.Models.Categories;
 
 namespace SERVICE.Services.Abstractions
 {
