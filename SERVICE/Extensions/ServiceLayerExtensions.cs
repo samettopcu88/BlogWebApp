@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using SERVICE.FluentValidations;
+using SERVICE.Helpers.Images;
 using SERVICE.Services.Abstractions;
 using SERVICE.Services.Concrete;
 using System.Globalization;
