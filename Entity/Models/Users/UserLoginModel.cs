@@ -13,4 +13,3 @@ namespace ENTITY.Models.Users
         public bool RememberMe { get; set; }
     }
 }
-}
