@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ENTITY.Entities;
 using Microsoft.AspNetCore.Identity;
 using NToastNotify;
+using SERVICE.Describers;
 
 var builder = WebApplication.CreateBuilder(args);
 
