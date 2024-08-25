@@ -1,4 +1,5 @@
-﻿using ENTITY.Models.Images;
+﻿using ENTITY.Enums;
+using ENTITY.Models.Images;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 

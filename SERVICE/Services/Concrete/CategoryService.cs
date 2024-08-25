@@ -2,6 +2,8 @@
 using DAL.UnitOfWorks;
 using ENTITY.Entities;
 using ENTITY.Models.Categories;
+using Microsoft.AspNetCore.Http;
+using SERVICE.Extensions;
 using SERVICE.Services.Abstractions;
 using System.Security.Claims;
 

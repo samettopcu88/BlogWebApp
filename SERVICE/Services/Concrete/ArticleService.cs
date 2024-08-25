@@ -1,16 +1,13 @@
 ﻿using AutoMapper;
 using DAL.UnitOfWorks;
 using ENTITY.Entities;
+using ENTITY.Enums;
 using ENTITY.Models.Articles;
 using Microsoft.AspNetCore.Http;
 using SERVICE.Extensions;
+using SERVICE.Helpers.Images;
 using SERVICE.Services.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SERVICE.Services.Concrete
 {
@@ -50,17 +47,17 @@ namespace SERVICE.Services.Concrete
                 IsAscending = isAscending
             };
         }
-        public async Task CreateArticleAsync(ArticleAddModel ArticleAddModel)
+        public async Task CreateArticleAsync(ArticleAddModel articleAddModel)
         {
 
             var userId = _user.GetLoggedInUserId();
             var userEmail = _user.GetLoggedInEmail();
 
-            var imageUpload = await imageHelper.Upload(ArticleAddModel.Title, ArticleAddModel.Photo, ImageType.Post);
-            Image image = new(imageUpload.FullName, ArticleAddModel.Photo.ContentType, userEmail);
+            var imageUpload = await imageHelper.Upload(articleAddModel.Title, articleAddModel.Photo, ImageType.Post);
+            Image image = new(imageUpload.FullName, articleAddModel.Photo.ContentType, userEmail);
             await unitOfWork.GetRepository<Image>().AddAsync(image);
 
-            var article = new Article(ArticleAddModel.Title, ArticleAddModel.Content, userId, userEmail, ArticleAddModel.CategoryId, image.Id);
+            var article = new Article(articleAddModel.Title, articleAddModel.Content, userId, userEmail, articleAddModel.CategoryId, image.Id);
 
 
             await unitOfWork.GetRepository<Article>().AddAsync(article);
@@ -83,27 +80,27 @@ namespace SERVICE.Services.Concrete
 
             return map;
         }
-        public async Task<string> UpdateArticleAsync(ArticleUpdateModel ArticleUpdateModel)
+        public async Task<string> UpdateArticleAsync(ArticleUpdateModel articleUpdateModel)
         {
             var userEmail = _user.GetLoggedInEmail();
-            var article = await unitOfWork.GetRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id == ArticleUpdateModel.Id, x => x.Category, i => i.Image);
+            var article = await unitOfWork.GetRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id == articleUpdateModel.Id, x => x.Category, i => i.Image);
 
-            if (ArticleUpdateModel.Photo != null)
+            if (articleUpdateModel.Photo != null)
             {
                 imageHelper.Delete(article.Image.FileName);
 
-                var imageUpload = await imageHelper.Upload(ArticleUpdateModel.Title, ArticleUpdateModel.Photo, ImageType.Post);
-                Image image = new(imageUpload.FullName, ArticleUpdateModel.Photo.ContentType, userEmail);
+                var imageUpload = await imageHelper.Upload(articleUpdateModel.Title, articleUpdateModel.Photo, ImageType.Post);
+                Image image = new(imageUpload.FullName, articleUpdateModel.Photo.ContentType, userEmail);
                 await unitOfWork.GetRepository<Image>().AddAsync(image);
 
                 article.ImageId = image.Id;
 
             }
 
-            mapper.Map(ArticleUpdateModel, article);
-            //article.Title = ArticleUpdateModel.Title;
-            //article.Content = ArticleUpdateModel.Content;
-            //article.CategoryId = ArticleUpdateModel.CategoryId;
+            mapper.Map(articleUpdateModel, article);
+            //article.Title = articleUpdateModel.Title;
+            //article.Content = articleUpdateModel.Content;
+            //article.CategoryId = articleUpdateModel.CategoryId;
             article.ModifiedDate = DateTime.Now;
             article.ModifiedBy = userEmail;
 
