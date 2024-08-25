@@ -6,6 +6,7 @@ using ENTITY.Entities;
 using Microsoft.AspNetCore.Identity;
 using NToastNotify;
 using SERVICE.Describers;
+using WEB.Filters.ArticleVisitors;
 
 var builder = WebApplication.CreateBuilder(args);
 
