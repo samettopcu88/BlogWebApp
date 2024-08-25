@@ -6,8 +6,7 @@ namespace SERVICE.Helpers.Images
 {
     public interface IImageHelper
     {
-        Task<ImageUploadedModel> Upload(string name, IFormFile imageFile,ImageType imageType, string folderName = null);
+        Task<ImageUploadedModel> Upload(string name, IFormFile imageFile, ImageType imageType, string folderName = null);
         void Delete(string imageName);
-        Task Upload(string title, IFormFile photo, ImageType post);
     }
 }
