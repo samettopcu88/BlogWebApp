@@ -11,8 +11,8 @@ namespace DAL.Mappings
             builder.HasData(new Article
             {
                 Id = Guid.NewGuid(),
-                Title = "Asp.net Core Deneme Makalesi 1",
-                Content = "Asp.net Core Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Vivamus suscipit tortor eget felis porttitor volutpat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.",
+                Title = "ASP NET",
+                Content = "ASP.NET, Microsoft tarafından geliştirilen ve web uygulamaları ile dinamik web siteleri oluşturmak için kullanılan bir web geliştirme framework'üdür. ASP.NET, .NET framework'ü üzerine inşa edilmiştir ve geliştiricilere güçlü bir araç seti sunar. Bu framework, dinamik sayfalar oluşturmak için HTML, CSS, JavaScript ve server-side kodları birleştirir. ASP.NET, MVC (Model-View-Controller) yapısı, Web Forms ve Web API gibi çeşitli programlama modelleri sunar. MVC modeli, uygulama yapısını daha düzenli ve yönetilebilir hale getirirken, Web Forms hızlı bir şekilde form tabanlı uygulamalar geliştirmeyi sağlar. Ayrıca, ASP.NET Core, platformlar arası destek sunarak Windows, Linux ve macOS üzerinde çalışabilen modern ve yüksek performanslı web uygulamaları geliştirmeyi mümkün kılar. ASP.NET'in sunduğu güvenlik özellikleri, performans optimizasyonları ve geniş kütüphane desteği, geliştiricilere hızlı ve güvenilir web çözümleri üretme imkanı tanır.",
                 ViewCount = 15,
                 CategoryId = Guid.Parse("4C569A9A-5F41-478F-9D17-69AC5B02AE0B"),
                 ImageId = Guid.Parse("F71F4B9A-AA60-461D-B398-DE31001BF214"),
@@ -24,8 +24,8 @@ namespace DAL.Mappings
             new Article
             {
                 Id = Guid.NewGuid(),
-                Title = "Visual Studio Deneme Makalesi 1",
-                Content = "Visual Studio Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Vivamus suscipit tortor eget felis porttitor volutpat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.",
+                Title = "Visual Studio",
+                Content = "Visual Studio, Microsoft tarafından geliştirilen kapsamlı bir entegre geliştirme ortamıdır (IDE) ve yazılım geliştirme süreçlerini kolaylaştırmak için tasarlanmıştır. Geliştiricilere, uygulama geliştirme, hata ayıklama ve test yapma gibi bir dizi araç ve özellik sunar. Visual Studio, C#, VB.NET, C++, Python, JavaScript gibi birçok programlama dilini destekler ve çeşitli proje türleri için uygun araçlar sunar, bunlar arasında masaüstü uygulamaları, web uygulamaları, mobil uygulamalar ve bulut hizmetleri yer alır.",
                 ViewCount = 15,
                 CategoryId = Guid.Parse("D23E4F79-9600-4B5E-B3E9-756CDCACD2B1"),
                 ImageId = Guid.Parse("D16A6EC7-8C50-4AB0-89A5-02B9A551F0FA"),
