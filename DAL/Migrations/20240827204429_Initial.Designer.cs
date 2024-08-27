@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240825151546_Initial")]
+    [Migration("20240827204429_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -56,21 +56,21 @@ namespace DAL.Migrations
                         new
                         {
                             Id = new Guid("16ea936c-7a28-4c30-86a2-9a9704b6115e"),
-                            ConcurrencyStamp = "6204789e-11bf-41b2-9b3f-e8907ebc997f",
+                            ConcurrencyStamp = "867c19ac-f04a-448c-8566-e518c6dfe506",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = new Guid("7cb750cf-3612-4fb4-9f7d-a38ba8f16bf4"),
-                            ConcurrencyStamp = "b779a570-00a7-41e8-a59f-7711585a5794",
+                            ConcurrencyStamp = "84b3fff2-554f-4065-98d5-5b2e07d9e43b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("edf6c246-41d8-475f-8d92-41dddac3aefb"),
-                            ConcurrencyStamp = "97b27570-f31d-4cd6-995c-eb14b55a9742",
+                            ConcurrencyStamp = "7b119f5b-b27f-40ba-8e0d-b49f430445f5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -183,7 +183,7 @@ namespace DAL.Migrations
                         {
                             Id = new Guid("cb94223b-ccb8-4f2f-93d7-0df96a7f065c"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "63ebea32-6b0b-4261-a945-430435d3c1e3",
+                            ConcurrencyStamp = "127bb45a-88f5-432c-b5c0-db32c5854846",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Samet",
@@ -192,10 +192,10 @@ namespace DAL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJzgh1DrTFstgSl8hynXcuXsXvWSG47BkYVYjFMsp/AoGrXMALaBI13kChxhyOb/Fw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED4fcZUJudWaYe4/cg1fm7r/wo25ycT1JKo8rJRZ6evjq4UeMFDceuM5d5vkR6f+Cw==",
                             PhoneNumber = "+905439999999",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3d4bb6b0-5b2d-471f-8e09-4d78347f5b3e",
+                            SecurityStamp = "cda812f9-9570-4da7-a009-4a4eb79118be",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -203,7 +203,7 @@ namespace DAL.Migrations
                         {
                             Id = new Guid("3aa42229-1c0f-4630-8c1a-db879ecd0427"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7d8d049d-5d1e-4fd7-9c0e-00b3ee4d1f88",
+                            ConcurrencyStamp = "117f3679-2835-4abb-a1fe-0378813c1f8f",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -212,10 +212,10 @@ namespace DAL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPLDQPTikXHjm4lR5rYuEQdrcSK6028Bv4HLjekbVZLU1ZsrkgLhAzJVgx9W+yKENg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHkmYyzfqcBWRrVeeD+S6kZazIHpiOzVE6847sgx+dOSrAe4kv7QkoyR/cW1FlP+Ng==",
                             PhoneNumber = "+905439999988",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "30f60809-4bd4-49fd-891c-850903593312",
+                            SecurityStamp = "5565ed0d-ecba-493a-853e-206ad5cc2615",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -375,11 +375,11 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("48350125-504a-4427-a7d6-c215ca17d49a"),
+                            Id = new Guid("a9800051-5a6d-445e-825d-bb3c6c6ced8c"),
                             CategoryId = new Guid("4c569a9a-5f41-478f-9d17-69ac5b02ae0b"),
                             Content = "Asp.net Core Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Vivamus suscipit tortor eget felis porttitor volutpat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.",
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2024, 8, 25, 18, 15, 45, 909, DateTimeKind.Local).AddTicks(1871),
+                            CreatedDate = new DateTime(2024, 8, 27, 23, 44, 28, 626, DateTimeKind.Local).AddTicks(554),
                             ImageId = new Guid("f71f4b9a-aa60-461d-b398-de31001bf214"),
                             IsDeleted = false,
                             Title = "Asp.net Core Deneme Makalesi 1",
@@ -388,11 +388,11 @@ namespace DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ad1f5e31-76a7-4f47-a441-c09acc097494"),
+                            Id = new Guid("00872986-80ca-45e4-ac37-de3a1fdec0b7"),
                             CategoryId = new Guid("d23e4f79-9600-4b5e-b3e9-756cdcacd2b1"),
                             Content = "Visual Studio Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Vivamus suscipit tortor eget felis porttitor volutpat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.",
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2024, 8, 25, 18, 15, 45, 909, DateTimeKind.Local).AddTicks(1882),
+                            CreatedDate = new DateTime(2024, 8, 27, 23, 44, 28, 626, DateTimeKind.Local).AddTicks(561),
                             ImageId = new Guid("d16a6ec7-8c50-4ab0-89a5-02b9a551f0fa"),
                             IsDeleted = false,
                             Title = "Visual Studio Deneme Makalesi 1",
@@ -457,7 +457,7 @@ namespace DAL.Migrations
                         {
                             Id = new Guid("4c569a9a-5f41-478f-9d17-69ac5b02ae0b"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2024, 8, 25, 18, 15, 45, 909, DateTimeKind.Local).AddTicks(5828),
+                            CreatedDate = new DateTime(2024, 8, 27, 23, 44, 28, 626, DateTimeKind.Local).AddTicks(4368),
                             IsDeleted = false,
                             Name = "ASP.NET Core"
                         },
@@ -465,7 +465,7 @@ namespace DAL.Migrations
                         {
                             Id = new Guid("d23e4f79-9600-4b5e-b3e9-756cdcacd2b1"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2024, 8, 25, 18, 15, 45, 909, DateTimeKind.Local).AddTicks(5845),
+                            CreatedDate = new DateTime(2024, 8, 27, 23, 44, 28, 626, DateTimeKind.Local).AddTicks(4384),
                             IsDeleted = false,
                             Name = "Visual Studio 2022"
                         });
@@ -516,7 +516,7 @@ namespace DAL.Migrations
                         {
                             Id = new Guid("f71f4b9a-aa60-461d-b398-de31001bf214"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2024, 8, 25, 18, 15, 45, 909, DateTimeKind.Local).AddTicks(6626),
+                            CreatedDate = new DateTime(2024, 8, 27, 23, 44, 28, 626, DateTimeKind.Local).AddTicks(5144),
                             FileName = "images/testimage",
                             FileType = "jpg",
                             IsDeleted = false
@@ -525,7 +525,7 @@ namespace DAL.Migrations
                         {
                             Id = new Guid("d16a6ec7-8c50-4ab0-89a5-02b9a551f0fa"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2024, 8, 25, 18, 15, 45, 909, DateTimeKind.Local).AddTicks(6630),
+                            CreatedDate = new DateTime(2024, 8, 27, 23, 44, 28, 626, DateTimeKind.Local).AddTicks(5148),
                             FileName = "images/vstest",
                             FileType = "png",
                             IsDeleted = false
