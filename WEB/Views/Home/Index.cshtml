@@ -1,132 +1,247 @@
-﻿@model ArticleListModel
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEB</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/WEB.styles.css?v=vnA2znHIr8w0HFiQt6XecPYLSLM__xocwiQ4FH3c_Q8" />
+    <style>
+        /* Genel Stil Ayarları */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
 
-<section class="blog-posts">
+        h4, h2 {
+            color: #007bff; /* Bootstrap primary color */
+        }
+
+        .navbar {
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .blog-post {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 1.5rem;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .blog-post:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            }
+
+        .blog-thumb img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .down-content {
+            padding: 1.5rem;
+        }
+
+            .down-content h4 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+        .post-info {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+            .post-info li {
+                display: inline;
+                margin-right: 1rem;
+            }
+
+        .post-options {
+            border-top: 1px solid #ddd;
+            padding-top: 1rem;
+        }
+
+        .post-tags, .post-share {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .post-tags li, .post-share li {
+                display: inline;
+                margin-right: 0.5rem;
+            }
+
+            .post-share a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .post-share a:hover {
+                    text-decoration: underline;
+                }
+
+        .sidebar-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .sidebar-item h2 {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+        .pagination {
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="all-blog-posts">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            @foreach (var item in Model.Articles)
-                            {
-                                <input type="hidden" id="keyword" value="@Model.CurrentPage" />
-                                <div class="blog-post">
-                                    <div class="blog-thumb">
-                                        <img src="~/stand-blog/assets/images/blog-post-01.jpg" alt="">
-                                    </div>
-                                    <div class="down-content">
-                                        <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><h4>@item.Title</h4></a>
-                                        <ul class="post-info">
-                                            <li>@item.User.FirstName @item.User.LastName</li>
-                                            <li>@item.CreatedDate.ToString("dd/MM/yyyy")</li>
-                                            <li><i class="fa-solid fa-eye"></i> @item.ViewCount</li>
-                                        </ul>
-                                        <p>
-                                            @(item.Content.Length > 280 ? item.Content.Substring(0, 280) : item.Content) ...
-                                        </p>
-                                        <div class="post-options">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <ul class="post-tags">
-                                                        <li><i class="fa fa-tags"></i></li>
-                                                        <li><a href="#">@item.Category.Name</a></li>
-                                                    </ul>
+        <main role="main" class="pb-3">
+            <section class="blog-posts">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="all-blog-posts">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="blog-post">
+                                        <div class="blog-thumb">
+                                            <img src="/stand-blog/assets/images/blog-post-01.jpg" alt="Visual Studio">
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="/Home/Detail/29bb1f1b-d337-4c9c-bd50-1a8b44bf7f01">
+                                                <h4>Visual Studio</h4>
+                                            </a>
+                                            <ul class="post-info">
+                                                <li>Admin User</li>
+                                                <li>28.08.2024</li>
+                                                <li><i class="fa-solid fa-eye"></i> 15</li>
+                                            </ul>
+                                            <p>
+                                                Visual Studio, Microsoft tarafından geliştirilen kapsamlı bir entegre geliştirme ortamıdır (IDE) ve yazılım geliştirme süreçlerini kolaylaştırmak için tasarlanmıştır. Geliştiricilere, uygulama geliştirme, hata ayıklama ve test yapma gibi bir dizi araç ve özellik sunar.
+                                            </p>
+                                            <div class="post-options">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <ul class="post-tags">
+                                                            <li><i class="fa fa-tags"></i></li>
+                                                            <li><a href="#">Visual Studio 2022</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ul class="post-share">
+                                                            <li><i class="fa fa-link"></i></li>
+                                                            <li><a href="/Home/Detail/29bb1f1b-d337-4c9c-bd50-1a8b44bf7f01">[Devamını Oku]</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <ul class="post-share">
-                                                        <li><i class="fa fa-link"></i></li>
-                                                        <li><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">[Devamını Oku]</a></li>
-                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-post">
+                                        <div class="blog-thumb">
+                                            <img src="/stand-blog/assets/images/blog-post-01.jpg" alt="ASP NET">
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="/Home/Detail/e5f272c4-4399-49fb-b1df-a8584f106e6c">
+                                                <h4>ASP NET</h4>
+                                            </a>
+                                            <ul class="post-info">
+                                                <li>Samet Topcu</li>
+                                                <li>28.08.2024</li>
+                                                <li><i class="fa-solid fa-eye"></i> 15</li>
+                                            </ul>
+                                            <p>
+                                                ASP.NET, Microsoft tarafından geliştirilen ve web uygulamaları ile dinamik web siteleri oluşturmak için kullanılan bir web geliştirme framework'üdür. ASP.NET, .NET framework'ü üzerine inşa edilmiştir ve geliştiricilere güçlü bir araç seti sunar.
+                                            </p>
+                                            <div class="post-options">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <ul class="post-tags">
+                                                            <li><i class="fa fa-tags"></i></li>
+                                                            <li><a href="#">ASP.NET Core</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ul class="post-share">
+                                                            <li><i class="fa fa-link"></i></li>
+                                                            <li><a href="/Home/Detail/e5f272c4-4399-49fb-b1df-a8584f106e6c">[Devamını Oku]</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            }
-                        </div>
-                        <div class="col-lg-12">
-                            @*<div class="main-button">
-                            <a href="blog.html">View All Posts</a>
-                            </div>*@
-
-                            <ul class="pagination justify-content-center mb-4 mt-4 btn-block">
-
-                                @if (Model.ShowPrevious)
-                                {
-                                    <li class="page-item">
-                                        <a class="page-link" asp-route-currentPage="@(Model.CurrentPage - 1)" asp-route-pageSize="@Model.PageSize"> Önceki </a>
-                                    </li>
-                                }
-                                @for (int i = 1; i < Model.TotalPages; i++)
-                                {
-                                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-
-                                        <a class="page-link" asp-route-currentPage="@i" asp-route-pageSize="@Model.PageSize"> @i </a>
-                                    </li>
-                                }
-                                @if (Model.ShowNext)
-                                {
-                                    <li class="page-item">
-                                        <a class="page-link" asp-route-currentPage="@(Model.CurrentPage + 1)" asp-route-pageSize="@Model.PageSize"> Sonraki </a>
-                                    </li>
-                                }
-
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="sidebar">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="sidebar-item search">
-                                <form id="search_form" asp-controller="Home" asp-action="Search" method="GET">
-                                    <input type="text" name="keyword" class="searchText" placeholder="Arama yapınız..." autocomplete="on">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="sidebar-item recent-posts">
-                                <div class="sidebar-heading">
-                                    <h2>Recent Posts</h2>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li>
-                                            <a href="post-details.html">
-                                                <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
-                                                <span>May 31, 2020</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="post-details.html">
-                                                <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-                                                <span>May 28, 2020</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="post-details.html">
-                                                <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
-                                                <span>May 14, 2020</span>
-                                            </a>
-                                        </li>
+                                <div class="col-lg-12">
+                                    <ul class="pagination justify-content-center mb-4">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="sidebar-item categories">
-                                <div class="sidebar-heading">
-                                    <h2>KATEGORİLER</h2>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="sidebar-item search">
+                                        <form id="search_form" method="GET" action="/Home/Search">
+                                            <input type="text" name="keyword" class="searchText form-control" placeholder="Arama yapınız..." autocomplete="on">
+                                        </form>
+                                    </div>
                                 </div>
-                                @await Component.InvokeAsync("HomeCategories")
+                                <div class="col-lg-12">
+                                    <div class="sidebar-item categories">
+                                        <div class="sidebar-heading">
+                                            <h2>KATEGORİLER</h2>
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <li><a href="/?categoryId=4c569a9a-5f41-478f-9d17-69ac5b02ae0b">- ASP.NET</a></li>
+                                                <li><a href="/?categoryId=d23e4f79-9600-4b5e-b3e9-756cdcacd2b1">- Visual Studio</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
-</section>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo"></script>
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="8d1637225aa54976983e62a497f977a6" data-requestMappingFromServer="false" data-connectUrl="http://localhost:56128/db4c9e651790492da83c5de52466deb8/browserLink"></script>
+    <!-- End Browser Link -->
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>
